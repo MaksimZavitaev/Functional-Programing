@@ -16,16 +16,14 @@ function bootstrap()
 {
     dbConnect(); // Выполняем подключение к БД
 
-    $messages = array(
-        array(
-            'status' => 'warning',
-            'text' => 'This is Warning'
-        ),
-        array(
-            'status' => 'info',
-            'text' => 'This is Info'
-        ),
-    );
+    // Массив для соощений
+    if (!isset($_SESSION['flash']['msg'])) {
+        $_SESSION['flash']['msg'] = array();
+    }
+
+    addMessage('This is Danger Message', 'danger');
+    addMessage('This is Info Message', 'info');
+    addMessage('This is Warning Message', 'warning');
 
     if (count($_GET) > 0) {
         $page = array_flip($_GET)['']; // array('' => 'about'); $page = 'about'
@@ -35,4 +33,27 @@ function bootstrap()
             }
         }
     }
+}
+
+function addMessage($text, $status = false)
+{
+    $msg = array('text' => $text, 'status' => $status);
+    array_push($_SESSION['flash']['msg'], $msg);
+}
+
+function clearMessages()
+{
+    unset($_SESSION['flash']['msg']);
+}
+
+function getMessages()
+{
+    $out = $_SESSION['flash']['msg'];
+    clearMessages();
+    return $out;
+}
+
+function hasMessages()
+{
+    return !empty($_SESSION['flash']['msg']);
 }
