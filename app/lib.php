@@ -11,3 +11,17 @@ function dbConnect()
         die('Ошибка подключения (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
     }
 }
+
+function bootstrap()
+{
+    dbConnect(); // Выполняем подключение к БД
+
+    if (count($_GET) > 0) {
+        $page = array_flip($_GET)['']; // array('' => 'about'); $page = 'about'
+        if (is_string($page) && $page !== '') {
+            if (is_file('templates/page/' . $page . '.php')) {
+                include 'templates/page/' . $page . '.php';
+            }
+        }
+    }
+}
