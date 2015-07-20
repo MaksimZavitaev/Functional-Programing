@@ -16,6 +16,17 @@ function bootstrap()
 {
     dbConnect(); // Выполняем подключение к БД
 
+    $messages = array(
+        array(
+            'status' => 'warning',
+            'text' => 'This is Warning'
+        ),
+        array(
+            'status' => 'info',
+            'text' => 'This is Info'
+        ),
+    );
+
     if (count($_GET) > 0) {
         $page = array_flip($_GET)['']; // array('' => 'about'); $page = 'about'
         if (is_string($page) && $page !== '') {

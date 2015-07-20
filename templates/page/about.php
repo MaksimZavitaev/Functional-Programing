@@ -3,6 +3,7 @@
     <?php include BASE . '/templates/blocks/head.php'; ?>
 </head>
 <body>
+<?php include BASE . '/templates/blocks/messages.php'; ?>
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
@@ -16,6 +17,6 @@
     </div>
 </div>
 
-<?php include BASE . '/templates/blocks/head.php'; ?>
+<?php include BASE . '/templates/blocks/footer.php'; ?>
 </body>
 </html>
