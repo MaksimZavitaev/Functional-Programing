@@ -1,8 +1,8 @@
 <?php
 
-if (hasMessages()): ?>
+if (\Flash\hasMessages()): ?>
     <div class="col-md-4 col-md-offset-4">
-        <?php foreach (getMessages() as $msg): ?>
+        <?php foreach (\Flash\getMessages() as $msg): ?>
             <div class="alert <?php echo (!$msg['status']) ?: 'alert-' . $msg['status']; ?> alert-dismissible"
                  role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
