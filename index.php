@@ -1,6 +1,7 @@
 <?php
 
 define('BASE', __DIR__);
+define('TPL', __DIR__ . '/templates/');
 
 session_start();
 

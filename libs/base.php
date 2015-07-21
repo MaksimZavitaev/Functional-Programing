@@ -19,7 +19,7 @@ function bootstrap()
         $page = array_flip($_GET)['']; // array('' => 'about'); $page = 'about'
         if (is_string($page) && $page !== '') {
             if (is_file('templates/page/' . $page . '.php')) {
-                include 'templates/page/' . $page . '.php';
+                include('templates/page/' . $page . '.php');
             }
         }
     }
