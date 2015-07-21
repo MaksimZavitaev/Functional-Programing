@@ -15,12 +15,22 @@ function bootstrap()
     \Flash\addMessage('This is Warning Message', 'warning');
 
     // TODO: Переписать роутер
-    if (count($_GET) > 0) {
+    $controller = $_GET['c'];
+    $action = $_GET['a'] ? 'action' . ucfirst($_GET['a']) : 'actionIndex';
+    if ($controller) {
+        if (is_file(BASE . '/app/controller/' . $controller . '.php')) {
+            require(BASE . '/app/controller/' . $controller . '.php');
+            $function = '\\Controller\\' . $action;
+            $function();
+        } else {
+            require(TPL . '404.php');
+        }
+    } elseif (count($_GET) > 0) {
         $page = array_flip($_GET)['']; // array('' => 'about'); $page = 'about'
         if (is_string($page) && $page !== '') {
-            if (is_file('templates/page/' . $page . '.php')) {
-                include('templates/page/' . $page . '.php');
-            }
+            require(TPL . 'page/' . $page . '.php');
         }
+    } else {
+
     }
 }
